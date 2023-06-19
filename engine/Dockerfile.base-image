@@ -1,0 +1,16 @@
+FROM python:3.7-slim-buster
+
+RUN apt-get update
+RUN apt install -y build-essential
+RUN python3 -m pip install --upgrade pip
+RUN apt install -y libatlas3-base libgfortran5
+RUN python3 -m pip install numpy==1.21.4
+RUN python3 -m pip install scipy==1.7.3
+RUN python3 -m pip install tflite-runtime
+RUN apt-get install -y llvm
+RUN LLVM_CONFIG=/usr/bin/llvm-config pip3 install llvmlite==0.31.0 numba==0.48.0 librosa==0.6.3
+RUN apt install -y portaudio19-dev
+RUN python3 -m pip install pyaudio
+RUN python3 -m pip install requests
+
+CMD ["tail","-f","/dev/null"]
